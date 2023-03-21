@@ -160,11 +160,10 @@ describe("Account Functionality: 4337", function () {
       ethers.utils.parseEther("1"),
     ]);
     // encode executeCall function data with transfer erc20 token data
-    const txnData = SmartAccount.interface.encodeFunctionData("executeCall_s1m", [
-      token.address,
-      0,
-      transferData,
-    ]);
+    const txnData = SmartAccount.interface.encodeFunctionData(
+      "executeCall_s1m",
+      [token.address, 0, transferData]
+    );
 
     const userOp1 = await fillAndSign(
       {
@@ -181,7 +180,6 @@ describe("Account Functionality: 4337", function () {
 
     const hash = await verifyingSingletonPaymaster.getHash(
       userOp1,
-      nonceFromContract.toNumber(),
       await offchainSigner.getAddress()
     );
     const sig = await offchainSigner.signMessage(arrayify(hash));
@@ -243,11 +241,10 @@ describe("Account Functionality: 4337", function () {
       ethers.utils.parseEther("1"),
     ]);
     // encode executeCall function data with transfer erc20 token data
-    const txnData = SmartAccount.interface.encodeFunctionData("executeCall_s1m", [
-      token.address,
-      0,
-      transferData,
-    ]);
+    const txnData = SmartAccount.interface.encodeFunctionData(
+      "executeCall_s1m",
+      [token.address, 0, transferData]
+    );
 
     const WalletFactory = await ethers.getContractFactory(
       "SmartAccountFactory"
@@ -274,7 +271,6 @@ describe("Account Functionality: 4337", function () {
     ](newUserSCW.address);
     const hash = await verifyingSingletonPaymaster.getHash(
       userOp1,
-      nonceFromContract.toNumber(),
       await offchainSigner.getAddress()
     );
     const sig = await offchainSigner.signMessage(arrayify(hash));
@@ -368,7 +364,6 @@ describe("Account Functionality: 4337", function () {
 
     const hash = await verifyingSingletonPaymaster.getHash(
       userOp1,
-      nonceFromContract.toNumber(),
       await offchainSigner.getAddress()
     );
     const sig = await offchainSigner.signMessage(arrayify(hash));
@@ -472,7 +467,6 @@ describe("Account Functionality: 4337", function () {
 
     const hash = await verifyingSingletonPaymaster.getHash(
       userOp1,
-      nonceFromContract.toNumber(),
       await offchainSigner.getAddress()
     );
     const sig = await offchainSigner.signMessage(arrayify(hash));

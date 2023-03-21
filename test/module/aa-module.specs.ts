@@ -53,7 +53,6 @@ async function getUserOpWithPaymasterData(
 
   const hash = await paymaster.getHash(
     userOp,
-    nonceFromContract.toNumber(),
     await offchainPaymasterSigner.getAddress()
   );
   const sig = await offchainPaymasterSigner.signMessage(arrayify(hash));
@@ -619,7 +618,6 @@ describe("Module transactions via AA flow", function () {
 
       const hash = await verifyingSingletonPaymaster.getHash(
         userOp1,
-        nonceFromContract.toNumber(),
         await offchainSigner.getAddress()
       );
       const sig = await offchainSigner.signMessage(arrayify(hash));
@@ -728,7 +726,6 @@ describe("Module transactions via AA flow", function () {
 
       const hash = await verifyingSingletonPaymaster.getHash(
         userOp1,
-        nonceFromContract.toNumber(),
         await offchainSigner.getAddress()
       );
       const sig = await offchainSigner.signMessage(arrayify(hash));
@@ -831,7 +828,6 @@ describe("Module transactions via AA flow", function () {
 
       const hash = await verifyingSingletonPaymaster.getHash(
         userOp1,
-        nonceFromContract.toNumber(),
         await offchainSigner.getAddress()
       );
       const sig = await offchainSigner.signMessage(arrayify(hash));
@@ -910,7 +906,6 @@ describe("Module transactions via AA flow", function () {
 
       const hash2 = await verifyingSingletonPaymaster.getHash(
         userOp2,
-        nonceFromContract2.toNumber(),
         await offchainSigner.getAddress()
       );
       const sig2 = await offchainSigner.signMessage(arrayify(hash2));
@@ -1042,7 +1037,6 @@ describe("Module transactions via AA flow", function () {
 
       const hash = await verifyingSingletonPaymaster.getHash(
         userOp1,
-        nonceFromContract.toNumber(),
         await offchainSigner.getAddress() // paymaster id is still same as previous offchain signer
       );
       const sig = await offchainSigner2.signMessage(arrayify(hash));

@@ -157,7 +157,6 @@ contract VerifyingSingletonPaymaster is
      */
     function getHash(
         UserOperation calldata userOp,
-        uint256 senderPaymasterNonce,
         address paymasterId
     ) public view returns (bytes32) {
         //can't use userOp.hash(), since it contains also the paymasterAndData itself.
@@ -177,7 +176,7 @@ contract VerifyingSingletonPaymaster is
                     block.chainid,
                     address(this),
                     paymasterId,
-                    senderPaymasterNonce
+                    paymasterNonces[sender]
                 )
             );
     }
@@ -210,11 +209,7 @@ contract VerifyingSingletonPaymaster is
         uint256 requiredPreFund
     ) internal override returns (bytes memory context, uint256 validationData) {
         PaymasterData memory paymasterData = userOp._decodePaymasterData();
-        bytes32 hash = getHash(
-            userOp,
-            paymasterNonces[userOp.getSender()],
-            paymasterData.paymasterId
-        );
+        bytes32 hash = getHash(userOp, paymasterData.paymasterId);
         uint256 sigLength = paymasterData.signatureLength;
         // we only "require" it here so that the revert reason on invalid signature will be of "VerifyingPaymaster", and not "ECDSA"
         if (sigLength != 65) revert InvalidPaymasterSignatureLength(sigLength);

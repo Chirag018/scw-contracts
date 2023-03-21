@@ -47,7 +47,6 @@ async function getUserOpWithPaymasterData(
 
   const hash = await paymaster.getHash(
     userOp,
-    nonceFromContract.toNumber(),
     await offchainPaymasterSigner.getAddress()
   );
   const sig = await offchainPaymasterSigner.signMessage(arrayify(hash));

@@ -130,7 +130,6 @@ describe("EntryPoint with VerifyingPaymaster Singleton", function () {
 
     const hash = await verifyingSingletonPaymaster.getHash(
       userOp1,
-      nonceFromContract.toNumber(),
       paymasterId
     );
     const sig = await offchainSigner.signMessage(arrayify(hash));
@@ -182,7 +181,6 @@ describe("EntryPoint with VerifyingPaymaster Singleton", function () {
 
       const hash = await verifyingSingletonPaymaster.getHash(
         userOp1,
-        nonceFromContract.toNumber(),
         await offchainSigner.getAddress()
       );
       const sig = await offchainSigner.signMessage(arrayify(hash));
@@ -226,7 +224,6 @@ describe("EntryPoint with VerifyingPaymaster Singleton", function () {
 
       const hash = await verifyingSingletonPaymaster.getHash(
         userOp1,
-        nonceFromContract.toNumber(),
         await offchainSigner.getAddress()
       );
       const sig = await offchainSigner.signMessage(arrayify(hash));
